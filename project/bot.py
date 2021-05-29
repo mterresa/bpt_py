@@ -50,12 +50,11 @@ while True:
                         print(game_teams.my_her.move(my_building.id, sort[0].id, 1))
                 if sort[0].creeps_count == 0:
                     print(game_teams.my_her.move(my_building.id, sort[0].id, 1))
-                sort_enemy = game_map.get_nearest_towers(my_building.id, enemy_buildings)
-                if state.ability_ready(AbilityType.Plague):
-                    print(game_teams.my_her.plague(sort_enemy[0].id))
-                sort_enemy.sort(key=lambda c: c.creeps_count, reverse=True)
-                if (my_building.creeps_count == 0) and (state.ability_ready(AbilityType.Build_exchange)):
-                    print(game_teams.my_her.exchange(sort_enemy[0].id, my_building.id))
+            if state.ability_ready(AbilityType.Plague):
+                print(game_teams.my_her.plague(enemy_buildings[0].id))
+            enemy_buildings.sort(key=lambda c: c.creeps_count, reverse=True)
+            if (my_building.creeps_count == 0) and (state.ability_ready(AbilityType.Build_exchange)):
+                print(game_teams.my_her.exchange(enemy_buildings[0].id, my_building.id))
            
                        
 
@@ -72,3 +71,4 @@ while True:
     finally:
         """ Требуется для получения нового состояния игры  """
         print("end")
+
